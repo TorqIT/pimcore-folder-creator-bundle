@@ -1,0 +1,10 @@
+system_folders:
+    data_objects:
+        - dataObjectFolder2:
+              - DateObjectFolder3
+        - AnotherFolder
+    assets:
+        - Pictures
+        - Videos
+    documents:
+        - Document1

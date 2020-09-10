@@ -1,0 +1,17 @@
+{
+    "name": "torqit/pimcore-admin-folder-creator-bundle",
+    "type": "pimcore-bundle",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TorqIt\\PimcoreAdminFolderCreatorBundle\\": ""
+        }
+    },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "TorqIt\\PimcoreAdminFolderCreatorBundle\\PimcoreAdminFolderCreatorBundle"
+            ]
+        }
+    }
+}
