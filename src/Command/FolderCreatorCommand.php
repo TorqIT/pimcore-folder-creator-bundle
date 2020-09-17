@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Command;
+namespace TorqIT\PimcoreFolderCreatorBundle\Command;
 
 use Pimcore\Config;
 use Pimcore\Console\AbstractCommand;
@@ -16,14 +16,15 @@ class FolderCreatorCommand extends AbstractCommand
     protected function configure()
     {
         $this
-            ->setName('folder-creator:command')
-            ->setDescription('Command for creating the layout of the Pimcore folder structure in the admin interface.')
-            ->addArgument('yaml_folder_layout', InputArgument::REQUIRED, 'The layout for the folders required in pimcore is required.');
+            ->setName('torq-it-folder-creator:folder-creator')
+            ->setDescription('Command for creating the layout of the Pimcore folder structure in the admin interface.');
+            //->addArgument('yaml_folder_layout', InputArgument::REQUIRED, 'The layout for the folders required in pimcore is required.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $folderFileLocation = $input->getArgument('yaml_folder_layout');
+        //$folderFileLocation = $input->getArgument('yaml_folder_layout');
+        $folderFileLocation = PIMCORE_APP_ROOT . '/config/folders.yml';
         $myConfig = new Config();
         $folderStructureArray = $myConfig->getConfigInstance($folderFileLocation, true);
 

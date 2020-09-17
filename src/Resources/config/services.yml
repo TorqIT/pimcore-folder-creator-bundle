@@ -9,23 +9,6 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
-    #
-    # CONTROLLERS
-    #
-
-    # auto-register all controllers as services
-    AppBundle\Controller\:
-        resource: '../../Controller'
-        public: true
-        tags: ['controller.service_arguments']
-
-
-    #
-    # COMMANDS
-    #
-
-    # auto-register all commands as services
-    AppBundle\Command\:
+    TorqIT\PimcoreFolderCreatorBundle\Command\:
         resource: '../../Command/*'
         tags: ['console.command']
-        
