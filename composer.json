@@ -4,13 +4,13 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "TorqIt\\PimcoreFolderCreatorBundle\\": ""
+            "TorqIT\\PimcoreFolderCreatorBundle\\": "bundles"
         }
     },
     "extra": {
         "pimcore": {
             "bundles": [
-                "TorqIt\\PimcoreFolderCreatorBundle\\PimcoreFolderCreatorBundle"
+                "TorqIT\\PimcoreFolderCreatorBundle\\PimcoreFolderCreatorBundle"
             ]
         }
     }
