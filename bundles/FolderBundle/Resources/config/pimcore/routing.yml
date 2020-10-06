@@ -1,0 +1,3 @@
+torq_it_pimcore_folder_creator_homepage:
+    path:     /torq_it_pimcore_folder_creator
+    defaults: { _controller: TorqITPimcoreFolderCreatorBundle:Default:index }

@@ -1,0 +1,21 @@
+system_folders:
+    data_objects:
+        - Product1:
+              - Product1Variant
+        - Product2
+        - Product3
+
+    assets:
+        - Asset1:
+              - Images
+              - Videos
+              - Other
+        - Other:
+              - Images
+              - Videos
+              - Other
+    documents:
+        - OtherDocuments
+        - SpecialTemplates:
+              - Template1
+              - Template2

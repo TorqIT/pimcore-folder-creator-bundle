@@ -1,0 +1,17 @@
+{
+    "name": "torqit/pimcore-folder-creator-bundle",
+    "type": "pimcore-bundle",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TorqIT\\PimcoreFolderCreatorBundle\\": "bundles"
+        }
+    },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "TorqIT\\PimcoreFolderCreatorBundle\\PimcoreFolderCreatorBundle"
+            ]
+        }
+    }
+}
