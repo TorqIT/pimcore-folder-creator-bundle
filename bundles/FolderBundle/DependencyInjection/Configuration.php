@@ -1,6 +1,6 @@
 <?php
 
-namespace TorqIT\PimcoreFolderCreatorBundle\DependencyInjection;
+namespace TorqIT\PimcoreFolderCreatorBundle\FolderBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
