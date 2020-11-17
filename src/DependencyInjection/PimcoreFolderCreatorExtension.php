@@ -1,6 +1,6 @@
 <?php
 
-namespace TorqIT\PimcoreFolderCreatorBundle\FolderBundle\DependencyInjection;
+namespace TorqIT\PimcoreFolderCreatorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class TorqITPimcoreFolderCreatorExtension extends Extension
+class PimcoreFolderCreatorExtension extends Extension
 {
     /**
      * {@inheritdoc}

@@ -4,7 +4,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "TorqIT\\PimcoreFolderCreatorBundle\\": "bundles"
+            "TorqIT\\PimcoreFolderCreatorBundle\\": "src"
         }
     },
     "extra": {
