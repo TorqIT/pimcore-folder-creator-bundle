@@ -21,38 +21,39 @@ class FolderCreatorCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $folderFileLocation = PIMCORE_APP_ROOT . '/config/folders.yml';
+        $folderFileLocation = PIMCORE_PROJECT_ROOT . '/config/folders.yml';
         $myConfig = new Config();
         $folderStructureArray = $myConfig->getConfigInstance($folderFileLocation, true);
 
-        if($folderStructureArray["system_folders"]){
+        if ($folderStructureArray["system_folders"]) {
             $systemFolders = $folderStructureArray["system_folders"];
 
-            if($systemFolders["documents"]){
+            if ($systemFolders["documents"]) {
                 $rootDocumentFolder = Document::getByPath("/");
                 $this->loopThroughFolders($systemFolders["documents"], $rootDocumentFolder, "createDocumentFolderIfNotExist");
             }
 
-            if($systemFolders["assets"]){
+            if ($systemFolders["assets"]) {
                 $rootAssetFolder = Asset::getByPath("/");
                 $this->loopThroughFolders($systemFolders["assets"], $rootAssetFolder, "createAssetFolderIfNotExist");
             }
 
-            if($systemFolders["data_objects"]){
+            if ($systemFolders["data_objects"]) {
                 $rootDataObjectFolder = DataObject::getByPath("/");
                 $this->loopThroughFolders($systemFolders["data_objects"], $rootDataObjectFolder, "createDataObjectFolderIfNotExist");
             }
         }
+
+        return 0;
     }
 
-    function loopThroughFolders($folders, $parent, $createFolderFunction)
+    private function loopThroughFolders($folders, $parent, $createFolderFunction)
     {
         foreach ($folders as $folder) {
-            if(is_string($folder)){
+            if (is_string($folder)) {
                 $this->$createFolderFunction($parent, $folder);
-            }
-            else if(is_array($folder)){
-                foreach($folder as $folderName => $innerFolders){
+            } else if (is_array($folder)) {
+                foreach ($folder as $folderName => $innerFolders) {
                     $createdFolder = $this->$createFolderFunction($parent, $folderName);
                     $this->loopThroughFolders($innerFolders, $createdFolder, $createFolderFunction);
                 }
@@ -60,7 +61,7 @@ class FolderCreatorCommand extends AbstractCommand
         }
     }
 
-    function createDocumentFolderIfNotExist($parentObject, $folderName)
+    private function createDocumentFolderIfNotExist($parentObject, $folderName)
     {
         $documentFolder = Document::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
@@ -74,7 +75,7 @@ class FolderCreatorCommand extends AbstractCommand
         return $documentFolder;
     }
 
-    function createAssetFolderIfNotExist($parentObject, $folderName)
+    private function createAssetFolderIfNotExist($parentObject, $folderName)
     {
         $assetFolder = Asset::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
@@ -88,7 +89,7 @@ class FolderCreatorCommand extends AbstractCommand
         return $assetFolder;
     }
 
-    function createDataObjectFolderIfNotExist($parentObject, $folderName)
+    private function createDataObjectFolderIfNotExist($parentObject, $folderName)
     {
         $dataObjectFolder = DataObject::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
