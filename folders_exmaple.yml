@@ -11,7 +11,9 @@ system_folders:
               - Videos
               - Other
         - Other:
-              - Images
+              - Images:
+                  - "<alphabetical>" # Use this notation to create a folder for each letter of the alphabet
+                  - "<numerical>" # Use this notation to create a folder for each number 0-9
               - Videos
               - Other
     documents:
