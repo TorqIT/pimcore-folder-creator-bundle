@@ -11,7 +11,8 @@ system_folders:
               - Videos
               - Other
         - Other:
-              - Images
+              - Images:
+                  - "A-Z" # Use this notation to create a folder for each letter of the alphabet (and a numerical 0-9 folder)
               - Videos
               - Other
     documents:
