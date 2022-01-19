@@ -51,10 +51,14 @@ class FolderCreatorCommand extends AbstractCommand
     {
         foreach ($folders as $folder) {
             if (is_string($folder)) {
-                if ($folder == 'A-Z') {
-                    $folder = ['(0-9)', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+                if ($folder == '<alphabetical>') {
+                    $folder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
                     $this->loopThroughFolders($folder, $parent, $createFolderFunction);
-                } else {
+                } else if ($folder == '<numerical>') {
+                    $folder = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+                    $this->loopThroughFolders($folder, $parent, $createFolderFunction);
+                } 
+                else {
                     $this->$createFolderFunction($parent, $folder);
                 }
             } else if (is_array($folder)) {
