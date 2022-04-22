@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use \Pimcore\Model\Asset;
 use \Pimcore\Model\Document;
 use \Pimcore\Model\DataObject;
+use Symfony\Component\Yaml\Yaml;
 
 class FolderCreatorCommand extends AbstractCommand
 {
@@ -21,24 +22,23 @@ class FolderCreatorCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $folderFileLocation = PIMCORE_PROJECT_ROOT . '/config/folders.yml';
-        $myConfig = new Config();
-        $folderStructureArray = $myConfig->getConfigInstance($folderFileLocation, true);
+        $folderFileLocation = PIMCORE_PROJECT_ROOT . '/config/folders.yaml';
+        $folderStructureArray = Yaml::parseFile($folderFileLocation);
 
         if ($folderStructureArray["system_folders"]) {
             $systemFolders = $folderStructureArray["system_folders"];
 
-            if ($systemFolders["documents"]) {
+            if (isset($systemFolders["documents"])) {
                 $rootDocumentFolder = Document::getByPath("/");
                 $this->loopThroughFolders($systemFolders["documents"], $rootDocumentFolder, "createDocumentFolderIfNotExist");
             }
 
-            if ($systemFolders["assets"]) {
+            if (isset($systemFolders["assets"])) {
                 $rootAssetFolder = Asset::getByPath("/");
                 $this->loopThroughFolders($systemFolders["assets"], $rootAssetFolder, "createAssetFolderIfNotExist");
             }
 
-            if ($systemFolders["data_objects"]) {
+            if (isset($systemFolders["data_objects"])) {
                 $rootDataObjectFolder = DataObject::getByPath("/");
                 $this->loopThroughFolders($systemFolders["data_objects"], $rootDataObjectFolder, "createDataObjectFolderIfNotExist");
             }
@@ -57,8 +57,7 @@ class FolderCreatorCommand extends AbstractCommand
                 } else if ($folder == '<numerical>') {
                     $folder = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
                     $this->loopThroughFolders($folder, $parent, $createFolderFunction);
-                } 
-                else {
+                } else {
                     $this->$createFolderFunction($parent, $folder);
                 }
             } else if (is_array($folder)) {
