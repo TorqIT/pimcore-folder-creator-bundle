@@ -1,8 +1,7 @@
 <?php
 
-namespace TorqIT\FolderCreatorBundle\Command;
+namespace App\Command;
 
-use Pimcore\Config;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,7 +19,7 @@ class FolderCreatorCommand extends AbstractCommand
             ->setDescription('Command for creating the layout of the Pimcore folder structure in the admin interface.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $folderFileLocation = PIMCORE_PROJECT_ROOT . '/config/folders.yaml';
         $folderStructureArray = Yaml::parseFile($folderFileLocation);
@@ -47,7 +46,7 @@ class FolderCreatorCommand extends AbstractCommand
         return 0;
     }
 
-    private function loopThroughFolders($folders, $parent, $createFolderFunction)
+    private function loopThroughFolders($folders, $parent, $createFolderFunction): void
     {
         foreach ($folders as $folder) {
             if (is_string($folder)) {
@@ -69,12 +68,12 @@ class FolderCreatorCommand extends AbstractCommand
         }
     }
 
-    private function createDocumentFolderIfNotExist($parentObject, $folderName)
+    private function createDocumentFolderIfNotExist($parentObject, $folderName): Document|Document\Folder
     {
         $documentFolder = Document::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
         if (!$documentFolder) {
-            $documentFolder = new \Pimcore\Model\Document\Folder();
+            $documentFolder = new Document\Folder();
             $documentFolder->setKey($folderName);
             $documentFolder->setParentId($parentObject->getId());
             $documentFolder->save();
@@ -83,12 +82,12 @@ class FolderCreatorCommand extends AbstractCommand
         return $documentFolder;
     }
 
-    private function createAssetFolderIfNotExist($parentObject, $folderName)
+    private function createAssetFolderIfNotExist($parentObject, $folderName): Asset|Asset\Folder
     {
         $assetFolder = Asset::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
         if (!$assetFolder) {
-            $assetFolder = new \Pimcore\Model\Asset\Folder();
+            $assetFolder = new Asset\Folder();
             $assetFolder->setFilename($folderName);
             $assetFolder->setParentId($parentObject->getId());
             $assetFolder->save();
@@ -97,12 +96,12 @@ class FolderCreatorCommand extends AbstractCommand
         return $assetFolder;
     }
 
-    private function createDataObjectFolderIfNotExist($parentObject, $folderName)
+    private function createDataObjectFolderIfNotExist($parentObject, $folderName): DataObject|DataObject\Folder
     {
         $dataObjectFolder = DataObject::getByPath($parentObject->getFullPath() . "/" . $folderName);
 
         if (!$dataObjectFolder) {
-            $dataObjectFolder = new \Pimcore\Model\DataObject\Folder();
+            $dataObjectFolder = new DataObject\Folder();
             $dataObjectFolder->setKey($folderName);
             $dataObjectFolder->setParentId($parentObject->getId());
             $dataObjectFolder->save();
