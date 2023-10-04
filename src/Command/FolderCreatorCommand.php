@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace TorqIT\FolderCreatorBundle\Command;
 
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
