@@ -1,5 +1,6 @@
 {
     "name": "torqit/pimcore-folder-creator-bundle",
+    "license": "POCL",
     "type": "pimcore-bundle",
     "require": {
         "pimcore/pimcore": "^12.0"
