@@ -1,5 +1,7 @@
 # License
-Copyright (C) Pimcore GmbH (https://www.pimcore.com)
+Copyright (C) Torq IT Limited (https://builtbytorq.com)
+
+This software is distributed by Torq IT Limited and licensed under the Pimcore Open Core License (POCL).
 
 This software is available under the terms of the
 following Pimcore Open Core License (POCL)
